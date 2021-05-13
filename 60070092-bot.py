@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 
 def main():
     # Resource URL
@@ -16,10 +17,6 @@ def main():
     'Accept': 'application/yang-data+json',
     'Content-Type': 'application/yang-data+json',
     }
-
-    response = requests.request("GET", url, headers=headers, auth=(username, password), verify=False)
-    data = json.loads(response.text)
-    print(data['ietf-interfaces:interface']['enabled'])
 
     while command.lower() != "exit":
         message = get_message(webex_bearer_token, webex_room_id)
@@ -39,6 +36,7 @@ def main():
                 interface_status = 'Loopback60070092 - Operational status is down'
             webex_response = sent_to_webex(webex_bearer_token, webex_room_id, interface_status)
             print(webex_response)
+        time.sleep(1)
     if command.lower() == 'exit':
         webex_response = sent_to_webex(webex_bearer_token, webex_room_id, "Bot ends")
 
