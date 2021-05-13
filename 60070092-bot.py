@@ -9,7 +9,7 @@ def main():
     password = "cisco"
     url = "https://{}/restconf/data/ietf-interfaces:interfaces/interface=Loopback60070092/".format(hostname)
 
-    command = ''
+    # Credentials
     webex_bearer_token = "NjU0MWFjYTgtYmM0MS00NjBkLTg5MjctODU3NTQ3YjMyYmYxMDJjYmIwOWMtNGEx_PF84_consumer"
     webex_room_id = "Y2lzY29zcGFyazovL3VzL1JPT00vNjA5Nzk5NDAtNTU3My0xMWViLWEzNzUtY2JkMGE4ZjAxYTA3"
     message_response = {}
@@ -18,6 +18,7 @@ def main():
     'Content-Type': 'application/yang-data+json',
     }
 
+    command = ''
     while command.lower() != "exit":
         message = get_message(webex_bearer_token, webex_room_id)
         if message_response == message:
